@@ -4,7 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/dogs-api/',
+  base: '/vue-restapi-demo/',
   plugins: [vue()],
   resolve: {
     alias: {
