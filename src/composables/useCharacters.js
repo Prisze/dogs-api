@@ -17,14 +17,39 @@ const useCharacters = () => {
       },
     })
 console.log(data)
-    characters.value.push(data.message)
+    characters.value.push({
+      _id: data.message[0].split("/").slice(4).join("/").replace(/\//g, ','),
+      name: data.message[0].split('/')[4].replace(/-/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+      imageUrl: data.message[0]
+  })
     page.value++
   }
 
   const fetchCharacter = async (id) => {
-    const { data } = await api.instance.get(`/character/${id}`)
-    currentCharacter.value = data
-    console.log(data)
+   // Predefined base URL
+const baseUrl = "https://images.dog.ceo/breeds/";
+
+// Split 'id' string by the comma
+const [namePart, imagePart] = id.split(",");
+
+// Reconstruct the original URL
+const imageUrl = `${baseUrl}${id.replace(",", "/")}`;
+
+// Convert name part to Title Case
+const name = namePart.split("-").map(word => {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}).join(" ");
+
+// Assemble the object
+const value = {
+  data: {
+    name: name,
+    imageUrl: imageUrl
+  }
+};
+
+// Assign the value to currentCharacter.value
+currentCharacter.value = value;
   }
 
   return {

@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'https://dog.ceo/api/breed/hound/afghan/images/random',
+  baseURL: 'https://dog.ceo/api/breeds/image/random',
 })
 
 const useApi = () => {
