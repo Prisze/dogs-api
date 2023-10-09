@@ -16,8 +16,8 @@ const useCharacters = () => {
         page: page.value,
       },
     })
-
-    characters.value.push(...data.data)
+console.log(data)
+    characters.value.push(data.message)
     page.value++
   }
 
